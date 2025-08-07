@@ -1,0 +1,12 @@
+wedding.syslab.my.id {
+  reverse_proxy wedding-app:3000
+
+  encode zstd gzip
+
+  log {
+    output stdout
+    format console
+  }
+
+  tls me@masdika.biz.id
+}

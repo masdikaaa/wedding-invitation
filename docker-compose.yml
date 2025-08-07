@@ -1,0 +1,65 @@
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: wedding_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - wedding_network
+    command: --default-authentication-plugin=mysql_native_password
+
+  # Wedding App (Next.js or other Node.js app)
+  wedding-app:
+    build: .
+    container_name: wedding_app
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: 3306
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
+    expose:
+      - "3000"
+    depends_on:
+      - mysql
+    networks:
+      - wedding_network
+    volumes:
+      - ./public:/app/public:ro
+
+  # Caddy as Reverse Proxy + HTTPS
+  caddy:
+    image: caddy:alpine
+    container_name: wedding_caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy_data:/data
+      - ./caddy_config:/config
+    depends_on:
+      - wedding-app
+    networks:
+      - wedding_network
+
+volumes:
+  mysql_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  wedding_network:
+    driver: bridge

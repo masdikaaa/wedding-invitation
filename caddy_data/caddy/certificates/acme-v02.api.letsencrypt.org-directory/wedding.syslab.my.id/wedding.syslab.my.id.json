@@ -1,0 +1,19 @@
+{
+	"sans": [
+		"wedding.syslab.my.id"
+	],
+	"issuer_data": {
+		"url": "https://acme-v02.api.letsencrypt.org/acme/cert/05cf39504676a8c59b0d3b67f570fb28f478",
+		"ca": "https://acme-v02.api.letsencrypt.org/directory",
+		"account": "https://acme-v02.api.letsencrypt.org/acme/acct/2580499797",
+		"renewal_info": {
+			"suggestedWindow": {
+				"start": "2025-10-05T17:22:00Z",
+				"end": "2025-10-07T12:32:50Z"
+			},
+			"_uniqueIdentifier": "kydGmAOpUWiOmNbEQkjbI79YlNI.Bc85UEZ2qMWbDTtn9XD7KPR4",
+			"_retryAfter": "2025-08-07T21:36:27.798956927Z",
+			"_selectedTime": "2025-10-07T07:08:03Z"
+		}
+	}
+}
