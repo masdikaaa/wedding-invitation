@@ -1,152 +1,142 @@
-# 💒 Wedding Invitation - Ririn & Andika
+![Tech Stack](https://img.shields.io/badge/Next.js-14-blue?style=flat-square\&logo=nextdotjs)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC?style=flat-square\&logo=tailwind-css)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.4.3-3178C6?style=flat-square\&logo=typescript)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square\&logo=mysql)
+![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?style=flat-square\&logo=docker)
+![Caddy](https://img.shields.io/badge/Caddy-2.7-0B3D91?style=flat-square\&logo=caddy)
 
-Sebuah website undangan pernikahan yang elegan dengan sistem RSVP terintegrasi, database MySQL, dan notifikasi email otomatis.
+# 💒 Wedding Invitation – Ririn & Andika
+
+**Sebuah website undangan pernikahan digital elegan** dengan fitur RSVP interaktif, notifikasi email otomatis, dan integrasi dengan Google Maps serta sistem hadiah digital.
+
+> Dibuat dengan ❤️ oleh [Masdika.BIZ.ID](https://masdika.biz.id) untuk momen spesial:
+> *17 Oktober 2025 – Sidoarjo, Jawa Timur*
+
+---
 
 ## ✨ Fitur Utama
 
-- 🎨 **Design Responsif** - Tampilan yang indah di semua perangkat
-- 🌙 **Dark Mode** - Mode gelap yang nyaman untuk mata
-- 🎵 **Background Music** - Musik latar yang dapat dikontrol
-- 📱 **Mobile Friendly** - Optimized untuk mobile dan tablet
-- 💌 **RSVP System** - Sistem konfirmasi kehadiran dengan database
-- 📧 **Email Notifications** - Notifikasi email otomatis ke pengantin
-- 🗺️ **Google Maps Integration** - Lokasi acara terintegrasi
-- 💳 **Digital Gift** - Informasi rekening untuk kado digital
-- 🎭 **Smooth Animations** - Animasi yang halus dan menarik
+* 🎨 **Desain Responsif** – Tampil elegan di semua ukuran layar
+* 🌙 **Dark Mode** – Mode malam yang nyaman untuk mata
+* 🎵 **Background Music** – Musik latar dengan kontrol suara
+* 📱 **Mobile-Friendly** – Optimisasi penuh untuk smartphone
+* 💌 **RSVP System** – Konfirmasi kehadiran langsung via web
+* 📧 **Email Notification** – Notifikasi otomatis ke email mempelai
+* 🗘️ **Google Maps** – Lokasi acara langsung di peta
+* 💳 **Digital Gift** – Kado digital via rekening
+* 🎭 **Smooth Animations** – Transisi animasi lembut dan modern
 
-## 🛠️ Tech Stack
+---
 
-- **Frontend**: Next.js 14, React 18, TypeScript
-- **Styling**: Tailwind CSS, Shadcn/UI
-- **Database**: MySQL 8.0
-- **Email**: Nodemailer dengan SMTP
-- **Deployment**: Docker & Docker Compose
-- **Reverse Proxy**: Caddy
+## 💠 Tech Stack
+
+| Layer        | Tools & Frameworks                             |
+| ------------ | ---------------------------------------------- |
+| **Frontend** | Next.js 14, React 18, TypeScript               |
+| **Styling**  | Tailwind CSS, Shadcn/UI                        |
+| **Backend**  | REST API (Next.js App Router)                  |
+| **Database** | MySQL 8.0                                      |
+| **Email**    | Nodemailer (SMTP via mail.masdika.biz.id)      |
+| **DevOps**   | Docker & Docker Compose, Caddy (Reverse Proxy) |
+
+---
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### ⚙️ Prerequisites
 
-- Docker & Docker Compose
-- Node.js 18+ (untuk development)
-- Git
+* [Docker](https://www.docker.com/) & Docker Compose
+* Node.js 18+ (opsional untuk dev lokal)
+* Git
 
-### 1. Clone Repository
+### 🔧 Instalasi
 
-\`\`\`bash
-git clone <repository-url>
+```bash
+# Clone repository
+git clone https://github.com/masdikaaa/wedding-invitation.git
 cd wedding-invitation
-\`\`\`
 
-### 2. Setup Environment
-
-\`\`\`bash
-# Copy environment file
+# Salin file environment
 cp .env.example .env
 
-# Edit environment variables
+# Edit konfigurasi
 nano .env
-\`\`\`
+```
 
-### 3. Deploy dengan Docker
+### 🐳 Jalankan dengan Docker
 
-\`\`\`bash
-# Build dan jalankan semua services
+```bash
+# Build dan start service
 docker compose up -d
 
-# Cek status containers
+# Cek status
 docker compose ps
 
-# Lihat logs
+# Lihat log aplikasi
 docker compose logs -f wedding-app
-\`\`\`
+```
 
-### 4. Akses Aplikasi
+### 🌐 Akses Aplikasi
 
-- **Website**: http://localhost
-- **Direct App**: http://localhost:3000
-- **Database**: localhost:3306
+* **Website**: [http://localhost](http://localhost)
+* **Next.js App**: [http://localhost:3000](http://localhost:3000)
+* **MySQL**: `localhost:3306`
 
-## 📧 Konfigurasi Email
+---
 
-Email sudah dikonfigurasi dengan:
-- **SMTP Host**: mail.masdika.biz.id
-- **Username**: me@masdika.biz.id
-- **Password**: Password
-- **Recipients**: 
-  - masdika.my.id@gmail.com
-  - rsulistyani93@gmail.com
+## 📧 Konfigurasi Email SMTP
+
+Gunakan pengaturan berikut di file `.env`:
+
+| Field      | Value                                                |
+| ---------- | ---------------------------------------------------- |
+| Host       | `mail.masdika.biz.id`                                |
+| Username   | `me@masdika.biz.id`                                  |
+| Password   | `your-password`                                      |
+| Recipients | `masdika.my.id@gmail.com`, `rsulistyani93@gmail.com` |
+
+---
 
 ## 🗄️ Database Schema
 
-### Table: rsvp_submissions
+### `rsvp_submissions`
 
-\`\`\`sql
+```sql
 CREATE TABLE rsvp_submissions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    attendance ENUM('hadir', 'tidak-hadir') NOT NULL,
-    guest_count INT DEFAULT 1,
-    message TEXT,
-    ip_address VARCHAR(45),
-    user_agent TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  attendance ENUM('hadir', 'tidak-hadir') NOT NULL,
+  guest_count INT DEFAULT 1,
+  message TEXT,
+  ip_address VARCHAR(45),
+  user_agent TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-\`\`\`
+```
 
-## 🔧 Development
+---
 
-### Local Development
+## 📡 API Endpoints
 
-\`\`\`bash
-# Install dependencies
-npm install
+### `POST /api/rsvp`
 
-# Setup database (manual)
-# Create MySQL database: wedding_rsvp
-# Run: mysql-init/01-init.sql
+Submit RSVP dari undangan.
 
-# Set environment variables
-DB_ROOT_PASSWORD=Password
-DB_HOST=mysql
-DB_USER=root
-DB_PASSWORD=Password
-DB_NAME=wedding_rsvp
-DB_PORT=3306
-ADMIN_TOKEN=Password
+**Request:**
 
-# Run development server
-npm run dev
-\`\`\`
-
-### Build untuk Production
-
-\`\`\`bash
-# Build aplikasi
-npm run build
-
-# Start production server
-npm start
-\`\`\`
-
-## 📊 API Endpoints
-
-### POST /api/rsvp
-Submit RSVP confirmation
-
-**Request Body:**
-\`\`\`json
+```json
 {
   "name": "John Doe",
   "attendance": "hadir",
   "guestCount": "2",
   "message": "Selamat untuk kalian berdua!"
 }
-\`\`\`
+```
 
 **Response:**
-\`\`\`json
+
+```json
 {
   "success": true,
   "message": "Konfirmasi kehadiran berhasil dikirim",
@@ -158,18 +148,21 @@ Submit RSVP confirmation
     "timestamp": "2025-01-15T10:30:00.000Z"
   }
 }
-\`\`\`
+```
 
-### GET /api/rsvp
-Get all RSVP submissions (Admin only)
+### `GET /api/rsvp`
+
+Menampilkan semua RSVP (akses admin).
 
 **Headers:**
-\`\`\`
+
+```
 Authorization: Bearer admin123
-\`\`\`
+```
 
 **Response:**
-\`\`\`json
+
+```json
 {
   "success": true,
   "data": [...],
@@ -180,11 +173,32 @@ Authorization: Bearer admin123
     "total_guests": 45
   }
 }
-\`\`\`
+```
+
+---
+
+## 🔧 Development
+
+```bash
+# Install dependencies
+npm install
+
+# Jalankan development server
+npm run dev
+```
+
+### 📦 Build Production
+
+```bash
+npm run build
+npm start
+```
+
+---
 
 ## 🐳 Docker Commands
 
-\`\`\`bash
+```bash
 # Build image
 docker build -t wedding-invitation .
 
@@ -192,31 +206,35 @@ docker build -t wedding-invitation .
 docker run -p 3000:3000 wedding-invitation
 
 # Docker Compose
-docker compose up -d          # Start services
-docker compose down           # Stop services
-docker compose logs -f        # View logs
-docker compose restart        # Restart services
+docker compose up -d      # Start
+docker compose down       # Stop
+docker compose logs -f    # Logs
+docker compose restart    # Restart
 
-# Database access
-docker compose exec mysql mysql -u user -p Password
-\`\`\`
+# Database CLI
+docker compose exec mysql mysql -u root -p
+```
 
-## 🔒 Security Features
+---
 
-- Rate limiting pada API endpoints
-- SQL injection protection
-- XSS protection headers
-- Input validation dan sanitization
-- Secure email configuration
-- Environment variables untuk sensitive data
+## 🔐 Keamanan
+
+* Input validation & sanitization
+* Rate limiting API
+* SQL injection protection
+* XSS protection headers
+* SMTP email secured via `.env`
+
+---
 
 ## 📱 Mobile Optimization
 
-- Responsive design untuk semua screen sizes
-- Touch-friendly interface
-- Optimized images dan assets
-- Fast loading dengan caching
-- Progressive Web App ready
+* Fully responsive layout
+* Touch-friendly UI
+* Optimized assets & caching
+* Progressive Web App (PWA) ready
+
+---
 
 ## 🎨 Customization
 
@@ -224,7 +242,7 @@ docker compose exec mysql mysql -u user -p Password
 
 Edit file `tailwind.config.js`:
 
-\`\`\`javascript
+```js
 module.exports = {
   theme: {
     extend: {
@@ -235,88 +253,88 @@ module.exports = {
     }
   }
 }
-\`\`\`
+```
 
 ### Mengubah Konten
 
 Edit komponen di `app/page.tsx`:
-- Nama mempelai
-- Tanggal dan lokasi
-- Informasi rekening
-- Pesan dan ucapan
 
-## 🚨 Troubleshooting
+* Nama mempelai
+* Tanggal dan lokasi acara
+* Informasi rekening
+* Ucapan & pesan undangan
+
+---
+
+## ⚠️ Troubleshooting
 
 ### Database Connection Error
 
-\`\`\`bash
+```bash
 # Cek status MySQL container
 docker compose ps mysql
 
 # Restart MySQL
 docker compose restart mysql
 
-# Cek logs
+# Lihat logs
 docker compose logs mysql
-\`\`\`
+```
 
 ### Email Not Sending
 
 1. Cek konfigurasi SMTP di `app/api/rsvp/route.ts`
-2. Verify email credentials
-3. Check firewall settings
-4. Review email logs
+2. Verifikasi kredensial email
+3. Pastikan port SMTP tidak diblokir firewall
+4. Periksa log SMTP server
 
-### Build Errors
+---
 
-\`\`\`bash
-# Clear cache
-rm -rf .next node_modules
-npm install
-npm run build
-\`\`\`
-
-## 📈 Monitoring
+## 📊 Monitoring
 
 ### Health Check
 
-\`\`\`bash
-# Check application health
+```bash
 curl http://localhost:3000/api/health
-
-# Check database
-docker compose exec mysql mysqladmin ping
-\`\`\`
+```
 
 ### Logs
 
-\`\`\`bash
-# Application logs
+```bash
+# Aplikasi
 docker compose logs -f wedding_app
 
-# Database logs
+# Database
 docker compose logs -f wedding_mysql
 
-# Caddy logs
+# Caddy
 docker compose logs -f wedding_caddy
-\`\`\`
+```
+
+---
 
 ## 🤝 Contributing
 
 1. Fork repository
-2. Create feature branch
-3. Commit changes
-4. Push to branch
-5. Create Pull Request
+2. Buat feature branch (`git checkout -b feature/xyz`)
+3. Commit perubahan
+4. Push branch ke remote
+5. Buat Pull Request
+
+---
 
 ## 📄 License
 
-Open Source project untuk Masdika
+Open-source untuk keperluan pribadi dan showcase oleh Masdika
+
+---
 
 ## 👥 Support
 
 Untuk pertanyaan atau bantuan:
-- Email: me@masdika.biz.id
+
+* Email: [me@masdika.biz.id](mailto:me@masdika.biz.id)
+
 ---
 
 **Made with ❤️ for Masdika.BIZ.ID**
