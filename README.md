@@ -5,6 +5,16 @@
 ![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?style=flat-square\&logo=docker)
 ![Caddy](https://img.shields.io/badge/Caddy-2.7-0B3D91?style=flat-square\&logo=caddy)
 
+---
+
+## 🖼️ Preview
+
+| Tampilan Awal                                                                                     | RSVP Form                                                                                      |
+| -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| ![Tampilan Awal](./preview/Screenshot%202025-08-08%20004737.png) | ![RSVP Form](./preview/Screenshot%202025-08-08%20004949.png) |
+
+---
+
 # 💒 Wedding Invitation – Ririn & Andika
 
 **Sebuah website undangan pernikahan digital elegan** dengan fitur RSVP interaktif, notifikasi email otomatis, dan integrasi dengan Google Maps serta sistem hadiah digital.
