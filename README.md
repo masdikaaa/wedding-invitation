@@ -5,7 +5,6 @@
 ![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?style=flat-square\&logo=docker)
 ![Caddy](https://img.shields.io/badge/Caddy-2.7-0B3D91?style=flat-square\&logo=caddy)
 
----
 
 ## 🖼️ Preview
 
